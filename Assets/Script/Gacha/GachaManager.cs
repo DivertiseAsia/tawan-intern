@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class GachaManager : MonoBehaviour
 {
-    public GameObject _result_1_Panel;
-    public GameObject _result_10_Panel;
+    [Header("Managers")]
+    [SerializeField] private BannerManager _bannerManager;
+    [SerializeField] private UImanager _uiManager;    
+    [SerializeField] private PlayerStatus _playerStatus;
 
-    public BannerManager _bannerManager;
-    
-    public PlayerStatus _playerStatus;
+    [Header("Result Panel")]
+    [SerializeField] private GameObject _result_1_Panel;
+    [SerializeField] private GameObject _result_10_Panel;
+    [SerializeField] private Item itemResult;
+    [SerializeField] public Item[] itemsResult = new Item[10];
 
+    [Header("Gacha Config")]
     public int gachaPrice = 100;
-
-    public Item itemResult;
-    public Item[] itemsResult = new Item[10];
-
-
     public GachaRate[] gachaRates = new GachaRate[4];
 
     public void PullOne()
@@ -47,7 +47,7 @@ public class GachaManager : MonoBehaviour
 
             _playerStatus.Pay(_bannerManager.bannerType, gachaPrice);
             
-            _bannerManager.UpdateBannerUI();
+            _uiManager.UpdateBannerUI();
 
             Debug.Log("End PullOne");
         }
@@ -88,7 +88,7 @@ public class GachaManager : MonoBehaviour
 
             _playerStatus.Pay(_bannerManager.bannerType, gachaPrice*10);
             
-            _bannerManager.UpdateBannerUI();
+            _uiManager.UpdateBannerUI();
 
             Debug.Log("End PullTen");
         }

@@ -1816,8 +1816,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1752115743}
-        m_TargetAssemblyTypeName: BannerManager, Assembly-CSharp
+      - m_Target: {fileID: 1614817961}
+        m_TargetAssemblyTypeName: UImanager, Assembly-CSharp
         m_MethodName: Topup
         m_Mode: 3
         m_Arguments:
@@ -2054,11 +2054,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490647e32cec1824b8b250212fe8f005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bannerManager: {fileID: 1752115743}
+  _uiManager: {fileID: 1614817961}
+  _playerStatus: {fileID: 173721823}
   _result_1_Panel: {fileID: 1962346082}
   _result_10_Panel: {fileID: 865514143}
-  _bannerManager: {fileID: 1752115743}
-  _playerStatus: {fileID: 173721823}
-  gachaPrice: 100
   itemResult: {fileID: 1565613829}
   itemsResult:
   - {fileID: 1754474674}
@@ -2071,6 +2071,7 @@ MonoBehaviour:
   - {fileID: 760709196}
   - {fileID: 420449943}
   - {fileID: 1470067399}
+  gachaPrice: 100
   gachaRates:
   - rarityName: 0
     rate: 5
@@ -5560,8 +5561,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1752115743}
-        m_TargetAssemblyTypeName: Banner, Assembly-CSharp
+      - m_Target: {fileID: 1614817961}
+        m_TargetAssemblyTypeName: UImanager, Assembly-CSharp
         m_MethodName: ChangeBannerToLimited
         m_Mode: 1
         m_Arguments:
@@ -5641,6 +5642,7 @@ Transform:
   - {fileID: 350087860}
   - {fileID: 1752115742}
   - {fileID: 360267522}
+  - {fileID: 1614817960}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7928,8 +7930,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1752115743}
-        m_TargetAssemblyTypeName: Banner, Assembly-CSharp
+      - m_Target: {fileID: 1614817961}
+        m_TargetAssemblyTypeName: UImanager, Assembly-CSharp
         m_MethodName: ChangeBannerToStandard
         m_Mode: 1
         m_Arguments:
@@ -8211,6 +8213,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565613827}
   m_CullTransparentMesh: 1
+--- !u!1 &1614817959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1614817960}
+  - component: {fileID: 1614817961}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1614817960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614817959}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1122497271}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1614817961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614817959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21bde83111cd80e4db30f85df2ebb2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bannerManager: {fileID: 1752115743}
+  _playerStatus: {fileID: 173721823}
+  _currencyImage: {fileID: 1462416384}
+  _currencyText: {fileID: 224139530}
+  _bannerNameText: {fileID: 752201338}
+  _HeadImage: {fileID: 1894522365}
+  _BodyImage: {fileID: 1067313710}
+  _WeaponImage: {fileID: 1664193913}
 --- !u!1 &1619231795
 GameObject:
   m_ObjectHideFlags: 0
@@ -9138,13 +9192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c215cbb7804ea48a1e39ca5b91d377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStatus: {fileID: 173721823}
-  _currencyImage: {fileID: 1462416384}
-  _currencyText: {fileID: 224139530}
-  _bannerNameText: {fileID: 752201338}
-  _HeadImage: {fileID: 1894522365}
-  _BodyImage: {fileID: 1067313710}
-  _WeaponImage: {fileID: 1664193913}
   bannerType: 0
   pools:
   - {fileID: 11400000, guid: 28d26d86f8bbe1147aaae939f8835a9b, type: 2}
