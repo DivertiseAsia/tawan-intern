@@ -16,7 +16,7 @@ public abstract class Currencies
 
     public void IncreaseAmount(int num)
     {
-        if (amount > 0)
+        if (amount >= 0)
         {
             amount += num;
         }

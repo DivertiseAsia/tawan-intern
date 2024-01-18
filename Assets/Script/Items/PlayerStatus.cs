@@ -3,10 +3,22 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-public class PlayerStatus : MonoBehaviour 
+public class PlayerStatus : MonoBehaviour, IDataPersistence
 {
     public Star stars;
     public Diamond diamonds;
+
+    public void LoadData(GameData data)
+    {
+        this.stars.amount = data.starAmount;
+        this.diamonds.amount = data.diamondAmount;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.starAmount = this.stars.amount;
+        data.diamondAmount = this.diamonds.amount;
+    }
 
     public int GetCurrencyAmount(BannerType bannerType)
     {

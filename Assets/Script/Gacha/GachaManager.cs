@@ -33,7 +33,7 @@ public class GachaManager : MonoBehaviour
                     Debug.Log("Is in Rate of" + gachaRates[i].rate);
                     Debug.Log("Rarity Is " + gachaRates[i].rarityName);
 
-                    ItemScriptableObject result = gachaResult(gachaRates[i].rarityName);
+                    ItemScriptableObject result = GachaResult(gachaRates[i].rarityName);
                     itemResult.Setup(result);
 
                     break;
@@ -76,7 +76,7 @@ public class GachaManager : MonoBehaviour
                         Debug.Log("Is in Rate of" + gachaRates[j].rate);
                         Debug.Log("Rarity Is " + gachaRates[j].rarityName);
 
-                        ItemScriptableObject result = gachaResult(gachaRates[j].rarityName);
+                        ItemScriptableObject result = GachaResult(gachaRates[j].rarityName);
                         item.Setup(result);
 
                         break;
@@ -100,7 +100,7 @@ public class GachaManager : MonoBehaviour
         
     }
 
-    public ItemScriptableObject gachaResult(RarityName rarity)
+    public ItemScriptableObject GachaResult(RarityName rarity)
     {
         ItemScriptableObject[] selectedPool = _bannerManager.pools[(int)_bannerManager.bannerType].GetItemsList(rarity);
         

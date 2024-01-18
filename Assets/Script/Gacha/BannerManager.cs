@@ -43,6 +43,7 @@ public class BannerManager : MonoBehaviour
     {
         _playerStatus.Topup(bannerType, amount);
         UpdateBannerUI();
+        Debug.Log("Top up " + amount);
     }
 
     private ItemScriptableObject findItem(PoolScriptableObject pool, BannerType bannerType, ItemType type, RarityName rarity )
