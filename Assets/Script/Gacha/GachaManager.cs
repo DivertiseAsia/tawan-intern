@@ -14,6 +14,7 @@ public class GachaManager : MonoBehaviour
     [SerializeField] private GameObject _result_10_Panel;
     [SerializeField] private Item itemResult;
     [SerializeField] public Item[] itemsResult = new Item[10];
+    [SerializeField] ItemScriptableObject[] itemsResultInfo;
 
     [Header("Gacha Config")]
     public int gachaPrice = 100;
@@ -98,6 +99,49 @@ public class GachaManager : MonoBehaviour
         }
 
         
+    }
+
+    public void Pull(int amount)
+    {
+        if (_playerStatus.isCurrencyEnough(_bannerManager.bannerType, gachaPrice * amount))
+        {
+            Debug.Log("Start Pull " + amount);
+
+            itemsResultInfo = new ItemScriptableObject[amount];
+
+            for (int i = 0; i < itemsResultInfo.Length; i++)
+            {
+                int random = Random.Range(1, 101);
+                for (int j = 0; j < gachaRates.Length; j++)
+                {
+                    if (random <= gachaRates[j].rate)
+                    {
+                        Debug.Log("Randomed Rate " + random);
+                        Debug.Log("Is in Rate of" + gachaRates[j].rate);
+                        Debug.Log("Rarity Is " + gachaRates[j].rarityName);
+
+                        ItemScriptableObject result = GachaResult(gachaRates[j].rarityName);
+
+                        itemsResultInfo[i] = result;
+
+                        break;
+                    }
+                }
+            }
+
+            _uiManager.ShowGachaResult(itemsResultInfo);
+
+            _playerStatus.Pay(_bannerManager.bannerType, gachaPrice * amount);
+
+            _uiManager.UpdateBannerUI();
+
+            Debug.Log("End Pull "+ amount);
+
+        }
+        else
+        {
+            Debug.Log("Currency is not enough");
+        }
     }
 
     public ItemScriptableObject GachaResult(RarityName rarity)

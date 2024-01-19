@@ -6,6 +6,8 @@ using TMPro;
 
 public class Item : MonoBehaviour
 {
+    [SerializeField] UI_Color colorPallete;
+
     [SerializeField] Image _itemPanel;
     [SerializeField] Image _itemSprite;
     [SerializeField] TextMeshProUGUI _itemTypeText;
@@ -25,19 +27,24 @@ public class Item : MonoBehaviour
 
     private void SetPanelColor(ItemScriptableObject itemInfo)
     {
+
         switch (itemInfo.rarity)
         {
             case RarityName.Legendary:
-                _itemPanel.color = UI_Color.GetColor(UI_Color.legendaryColor);
+                _itemPanel.color = colorPallete.legendary;
+                _itemRarityText.color = colorPallete.legendary;
                 break;
             case RarityName.Epic:
-                _itemPanel.color = UI_Color.GetColor(UI_Color.epicColor);
+                _itemPanel.color = colorPallete.epic;
+                _itemRarityText.color = colorPallete.epic;
                 break;
             case RarityName.Rare:
-                _itemPanel.color = UI_Color.GetColor(UI_Color.rareColor);
+                _itemPanel.color = colorPallete.rare;
+                _itemRarityText.color = colorPallete.rare;
                 break;
             case RarityName.Common:
-                _itemPanel.color = UI_Color.GetColor(UI_Color.commonColor);
+                _itemPanel.color = colorPallete.common;
+                _itemRarityText.color = colorPallete.common;
                 break;
         }
     }
