@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83e5f1a37c5c0f429fcc3f0f988f40d, type: 3}
+  m_Name: DefaultUIColor
+  m_EditorClassIdentifier: 
+  legendary: {r: 0.93725497, g: 0.86666673, b: 0.20784315, a: 1}
+  epic: {r: 0.85098046, g: 0.28627452, b: 0.90196085, a: 1}
+  rare: {r: 0.4235294, g: 0.7051379, b: 0.9098039, a: 1}
+  common: {r: 0.85098046, g: 0.85098046, b: 0.85098046, a: 1}
