@@ -6,68 +6,52 @@ using UnityEngine.UI;
 
 public class UImanager : MonoBehaviour
 {
-    [Header("Banner Manager & PlayerStatus")]
-    
-    [SerializeField] BannerManager bannerManager;
+    [Header("--PlayerStatus--")]
     [SerializeField] PlayerStatus _playerStatus;
 
-    [Header("Gacha Panel")]
+    [Header("--Gacha Wish Button--")]
+    [SerializeField] WishButton[] _wishButtons;
 
-    [SerializeField] Button _standardButton;
-    [SerializeField] Button _limitedButton;
+    [Header("--Gacha Banner Button--")]
+    [SerializeField] BannerButton[] _bannerButtons;
     [SerializeField] int defaultPosX;
     [SerializeField] int selectedPosX;
     [SerializeField] Color defaultColor;
     [SerializeField] Color selectedColor;
 
+    [Header("--Currency--")]
     [SerializeField] Image _currencyImage;
     [SerializeField] TextMeshProUGUI _currencyText;
+    Sprite currentCurrencySprite;
 
-
-    [Header("Result Panel")]
+    [Header("--Result Panel--")]
     [SerializeField] Item itemPrefab;
     [SerializeField] GameObject _resultPanel;
     [SerializeField] ScrollRect _itemsScrollRect;
     [SerializeField] RectTransform _contentsTransform;
-    
-    
-    
 
-    [Header("BannerName")]
-    
+    [Header("--BannerName--")]
     [SerializeField] TextMeshProUGUI _bannerNameText;
-    
 
-    [Header("Legend Item to show")]
+    [Header("--Legend Item to show--")]
     [SerializeField] Image _HeadImage;
     [SerializeField] Image _BodyImage;
     [SerializeField] Image _WeaponImage;
 
-    
-
-    private void Start()
+    private void OnEnable()
     {
-        UpdateBannerUI();
+        BannerManager.OnBannerSwitched += UpdateBannerUI;
     }
 
-    public void ChangeBannerToStandard()
+    private void OnDisable()
     {
-        bannerManager.bannerType = BannerType.Standard;
-        
-        UpdateBannerUI();
-    }
-    public void ChangeBannerToLimited()
-    {
-        bannerManager.bannerType = BannerType.Limited;
-        
-        UpdateBannerUI();
+        BannerManager.OnBannerSwitched -= UpdateBannerUI;
     }
 
     public void Topup(int amount)
     {
-        _playerStatus.Topup(bannerManager.bannerType, amount);
-        UpdateBannerUI();
-        Debug.Log("Top up " + amount);
+        _playerStatus.Topup(amount);
+        UpdateCurrencyUI();
     }
 
     public void ShowGachaResult(ItemScriptableObject[] itemsInfo)
@@ -78,7 +62,7 @@ public class UImanager : MonoBehaviour
             item.Setup(itemInfo);
         }
 
-       
+
         _resultPanel.SetActive(true);
         _itemsScrollRect.horizontalNormalizedPosition = 0;
     }
@@ -92,46 +76,72 @@ public class UImanager : MonoBehaviour
         }
     }
 
-    public void UpdateBannerUI()
+    public void UpdateBannerUI(BannerManager bannerManager)
     {
-        BannerType bannerType = bannerManager.bannerType;
-        PoolScriptableObject pool = bannerManager.pools[(int)bannerType];
+        _bannerNameText.text = bannerManager.currentBanner.bannerName;
 
-        _bannerNameText.text = pool.bannerName;
-        
-        _currencyImage.sprite = pool._currencySprite;        
-        
-        _currencyText.text = _playerStatus.GetCurrencyAmount(bannerType).ToString();
 
-        _HeadImage.sprite = bannerManager.findItem(pool, bannerType, ItemType.Head, RarityName.Legendary).itemSprite;
-        _BodyImage.sprite = bannerManager.findItem(pool, bannerType, ItemType.Body, RarityName.Legendary).itemSprite;
-        _WeaponImage.sprite = bannerManager.findItem(pool, bannerType, ItemType.Weapon, RarityName.Legendary).itemSprite;
+        currentCurrencySprite = bannerManager.currentBanner._currencySprite;
+        UpdateCurrencyUI();
 
-        ChangeButtonPos();
+        UpdateWishButton();
+
+        UpdateBannerButtonPos(bannerManager.currentBanner);
+
+        _HeadImage.sprite = bannerManager.findItem(ItemType.Head, RarityName.Legendary).itemSprite;
+        _BodyImage.sprite = bannerManager.findItem(ItemType.Body, RarityName.Legendary).itemSprite;
+        _WeaponImage.sprite = bannerManager.findItem(ItemType.Weapon, RarityName.Legendary).itemSprite;
+
     }
 
-    private void ChangeButtonPos()
+    public void UpdateCurrencyUI()
     {
-        BannerType bannerType = bannerManager.bannerType;
+        _currencyText.text = _playerStatus.currentCurrency.amount.ToString();
+        _currencyImage.sprite = currentCurrencySprite;
+    }
 
-        if(bannerType== BannerType.Standard)
+    private void UpdateWishButton()
+    {
+        int gachaPrice = GachaManager.Instance.gachaPrice;
+        foreach (WishButton btn in _wishButtons)
         {
-            _standardButton.transform.localPosition = new Vector3 (selectedPosX, _standardButton.transform.localPosition.y, 0);
-            _standardButton.image.color = selectedColor;
-
-            _limitedButton.transform.localPosition = new Vector3(defaultPosX, _limitedButton.transform.localPosition.y, 0);
-            _limitedButton.image.color = defaultColor;
-
+            btn._wishText.text = $"Wish x{btn._wishAmount}";
+            btn._priceText.text = $"x {gachaPrice* btn._wishAmount}";
+            btn._currencyImage.sprite = currentCurrencySprite;
         }
-        else if(bannerType== BannerType.Limited)
+    }
+    public void UpdateBannerButtonPos(BannerScriptableObject banner)
+    {
+        foreach (BannerButton btn in _bannerButtons)
         {
-            _standardButton.transform.localPosition = new Vector3(defaultPosX, _standardButton.transform.localPosition.y, 0);
-            _standardButton.image.color = defaultColor;
-
-            _limitedButton.transform.localPosition = new Vector3(selectedPosX, _limitedButton.transform.localPosition.y, 0);
-            _limitedButton.image.color = selectedColor;
+            if (btn._banner == banner)
+            {
+                btn.transform.localPosition = new Vector3(selectedPosX + defaultPosX, btn.transform.localPosition.y, 0);
+                btn.GetComponent<Button>().image.color = selectedColor;
+            }
+            else
+            {
+                btn.transform.localPosition = new Vector3(defaultPosX, btn.transform.localPosition.y, 0);
+                btn.GetComponent<Button>().image.color = defaultColor;
+            }
         }
     }
 
-    
+    public void UpdateButtonPos(BannerButton currentButton)
+    {
+        foreach (BannerButton btn in _bannerButtons)
+        {
+            if (btn == currentButton)
+            {
+                btn.transform.localPosition = new Vector3(selectedPosX+defaultPosX, btn.transform.localPosition.y, 0);
+                btn.GetComponent<Button>().image.color = selectedColor;
+            }
+            else
+            {
+                btn.transform.localPosition = new Vector3(defaultPosX, btn.transform.localPosition.y, 0);
+                btn.GetComponent<Button>().image.color = defaultColor;
+            }
+        }
+    }
+
 }

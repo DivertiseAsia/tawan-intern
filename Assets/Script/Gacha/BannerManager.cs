@@ -7,12 +7,41 @@ using System;
 
 public class BannerManager : MonoBehaviour
 {
-    public BannerType bannerType;
-    public PoolScriptableObject[] pools;
+    #region
 
-    public ItemScriptableObject findItem(PoolScriptableObject pool, BannerType bannerType, ItemType type, RarityName rarity )
+    public static event Action<BannerManager> OnBannerSwitched;
+
+    #endregion
+
+    public BannerType bannerType;
+    public BannerScriptableObject defaultBanner;
+    public BannerScriptableObject currentBanner;
+
+    private void Start()
     {
-        ItemScriptableObject selectedItem = Array.Find(pool.items, item => 
+        SwitchBanner(defaultBanner);
+    }
+
+    public void SwitchBanner(BannerScriptableObject banner)
+    {
+        currentBanner = banner;
+        this.bannerType = banner.bannerType;
+        OnBannerSwitched?.Invoke(this);
+    }
+
+    public ItemScriptableObject findItem(ItemType type, RarityName rarity)
+    {
+        ItemScriptableObject selectedItem = Array.Find(currentBanner.items, item =>
+                                                            item.rarity == rarity &&
+                                                            item.bannerType == bannerType &&
+                                                            item.itemType == type);
+
+        return selectedItem;
+    }
+
+    public ItemScriptableObject findItem(BannerScriptableObject banner, BannerType bannerType, ItemType type, RarityName rarity )
+    {
+        ItemScriptableObject selectedItem = Array.Find(banner.items, item => 
                                                             item.rarity == rarity &&
                                                             item.bannerType == bannerType &&
                                                             item.itemType == type);

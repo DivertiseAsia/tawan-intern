@@ -1,25 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GachaManager : MonoBehaviour
 {
+    public static GachaManager Instance { get; private set; }
+
     [Header("Managers")]
     [SerializeField] private BannerManager _bannerManager;
     [SerializeField] private UImanager _uiManager;    
     [SerializeField] private PlayerStatus _playerStatus;
 
     [Header("Result Panel")]
-    [SerializeField] public Item[] itemsResult = new Item[10];
     [SerializeField] ItemScriptableObject[] itemsResultInfo;
 
     [Header("Gacha Config")]
     public int gachaPrice = 100;
     public GachaRate[] gachaRates = new GachaRate[4];
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Found more than one Data Persistence Manager in the scene");
+        }
+        Instance = this;
+    }
+
     public void Pull(int amount)
     {
-        if (_playerStatus.isCurrencyEnough(_bannerManager.bannerType, gachaPrice * amount))
+        if (_playerStatus.isCurrencyEnough(gachaPrice * amount))
         {
             Debug.Log("Start Pull " + amount);
 
@@ -47,9 +58,9 @@ public class GachaManager : MonoBehaviour
 
             _uiManager.ShowGachaResult(itemsResultInfo);
 
-            _playerStatus.Pay(_bannerManager.bannerType, gachaPrice * amount);
+            _playerStatus.Pay(gachaPrice * amount);
 
-            _uiManager.UpdateBannerUI();
+            _uiManager.UpdateCurrencyUI();
 
             Debug.Log("End Pull "+ amount);
 
@@ -62,8 +73,8 @@ public class GachaManager : MonoBehaviour
 
     public ItemScriptableObject GachaResult(RarityName rarity)
     {
-        ItemScriptableObject[] selectedPool = _bannerManager.pools[(int)_bannerManager.bannerType].GetItemsList(rarity);
-        
+        ItemScriptableObject[] selectedPool = _bannerManager.currentBanner.GetItemsList(rarity);
+
         int random = Random.Range(0, selectedPool.Length);
 
         return selectedPool[random];

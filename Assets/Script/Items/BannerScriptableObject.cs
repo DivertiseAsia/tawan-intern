@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[CreateAssetMenu(fileName = "Pool", menuName = "Pool")]
-public class PoolScriptableObject : ScriptableObject
+[CreateAssetMenu(fileName = "new Banner", menuName = "Banner")]
+public class BannerScriptableObject : ScriptableObject
 {
     public Sprite _currencySprite;
     public ItemScriptableObject[] items;
     public string bannerName;
+    public BannerType bannerType;
 
     public ItemScriptableObject[] GetItemsList(RarityName rarity)
     {
