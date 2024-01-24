@@ -9,7 +9,7 @@ public class GachaManager : MonoBehaviour
 
     [Header("Managers")]
     [SerializeField] private BannerManager _bannerManager;
-    [SerializeField] private UImanager _uiManager;    
+    [SerializeField] private UImanager _uiManager;
     [SerializeField] private PlayerStatus _playerStatus;
 
     [Header("Result Panel")]
@@ -43,9 +43,7 @@ public class GachaManager : MonoBehaviour
                 {
                     if (random <= gachaRates[j].rate)
                     {
-                        Debug.Log("Randomed Rate " + random);
-                        Debug.Log("Is in Rate of" + gachaRates[j].rate);
-                        Debug.Log("Rarity Is " + gachaRates[j].rarityName);
+                        
 
                         ItemScriptableObject result = GachaResult(gachaRates[j].rarityName);
 

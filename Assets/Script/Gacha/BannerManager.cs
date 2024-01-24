@@ -26,6 +26,9 @@ public class BannerManager : MonoBehaviour
     {
         currentBanner = banner;
         this.bannerType = banner.bannerType;
+
+        AudioManager.Instance.PlaySFX("Open");
+
         OnBannerSwitched?.Invoke(this);
     }
 

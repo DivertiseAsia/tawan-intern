@@ -24,12 +24,10 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
         switch (bannerManager.bannerType)
         {
             case BannerType.Standard:
-                currentCurrency = stars;
-                Debug.Log("currency = stars");
+                currentCurrency = stars;                
                 break;
             case BannerType.Limited: 
-                currentCurrency = diamonds;
-                Debug.Log("currency = diamonds");
+                currentCurrency = diamonds;                
                 break;
             default: 
                 break;

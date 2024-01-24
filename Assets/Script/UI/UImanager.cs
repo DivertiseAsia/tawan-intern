@@ -25,7 +25,7 @@ public class UImanager : MonoBehaviour
     Sprite currentCurrencySprite;
 
     [Header("--Result Panel--")]
-    [SerializeField] Item itemPrefab;
+    [SerializeField] ItemCard itemPrefab;
     [SerializeField] GameObject _resultPanel;
     [SerializeField] ScrollRect _itemsScrollRect;
     [SerializeField] RectTransform _contentsTransform;
@@ -50,6 +50,7 @@ public class UImanager : MonoBehaviour
 
     public void Topup(int amount)
     {
+        AudioManager.Instance.PlaySFX("Open");
         _playerStatus.Topup(amount);
         UpdateCurrencyUI();
     }
@@ -58,7 +59,7 @@ public class UImanager : MonoBehaviour
     {
         foreach (ItemScriptableObject itemInfo in itemsInfo)
         {
-            Item item = Instantiate(itemPrefab, _contentsTransform);
+            ItemCard item = Instantiate(itemPrefab, _contentsTransform);
             item.Setup(itemInfo);
         }
 
@@ -74,6 +75,18 @@ public class UImanager : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
+    }
+
+    public void ShowPanel(GameObject panel)
+    {
+        AudioManager.Instance.PlaySFX("Open");
+        panel.SetActive(true);
+    }
+
+    public void ClosePanel(GameObject panel)
+    {
+        AudioManager.Instance.PlaySFX("Close");
+        panel.SetActive(false);
     }
 
     public void UpdateBannerUI(BannerManager bannerManager)
