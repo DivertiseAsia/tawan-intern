@@ -12,11 +12,13 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
     private void OnEnable()
     {
         BannerManager.OnBannerSwitched += ChangeCurrency;
+        NewGachaManager.OnBannerSwitched += ChangeCurrency;
     }
 
     private void OnDisable()
     {
         BannerManager.OnBannerSwitched -= ChangeCurrency;
+        NewGachaManager.OnBannerSwitched -= ChangeCurrency;
     }
     
     private void ChangeCurrency(BannerManager bannerManager)
@@ -30,6 +32,21 @@ public class PlayerStatus : MonoBehaviour, IDataPersistence
                 currentCurrency = diamonds;                
                 break;
             default: 
+                break;
+        }
+    }
+
+    private void ChangeCurrency(Banner banner)
+    {
+        switch (banner.bannerType)
+        {
+            case BannerType.Standard:
+                currentCurrency = stars;
+                break;
+            case BannerType.Limited:
+                currentCurrency = diamonds;
+                break;
+            default:
                 break;
         }
     }
