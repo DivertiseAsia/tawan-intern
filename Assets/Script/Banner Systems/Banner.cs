@@ -84,3 +84,9 @@ public abstract class Banner : ScriptableObject
 
 
 }
+
+public enum BannerType
+{
+    Standard,
+    Limited
+}

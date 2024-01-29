@@ -13,9 +13,6 @@ public class NewGachaManager : MonoBehaviour
     [SerializeField] Banner currentBanner;
     [SerializeField] Banner defaultBanner;
 
-    [Header("Managers")]
-    [SerializeField] private PlayerStatus _playerStatus;
-
     [Header("Result Panel")]
     [SerializeField] ItemScriptableObject[] itemsResultInfo;
 
