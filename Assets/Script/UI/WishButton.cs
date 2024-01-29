@@ -15,7 +15,6 @@ public class WishButton : MonoBehaviour
     public void Pull()
     {
         AudioManager.Instance.PlaySFX("Open");
-        //GachaManager.Instance.Pull(_wishAmount);
-        NewGachaManager.Instance.Pull(_wishAmount);
+        GachaManager.Instance.Pull(_wishAmount);
     }
 }

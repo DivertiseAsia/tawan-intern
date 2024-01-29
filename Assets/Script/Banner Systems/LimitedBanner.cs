@@ -8,6 +8,12 @@ using UnityEngine;
 public class LimitedBanner : Banner
 {
     [SerializeField] private StandardBanner standardBanner;
+
+    private void Reset()
+    {
+        bannerType = BannerType.Limited;
+    }
+
     public override void SetupPool()
     {
         poolItems = new ItemScriptableObject[bannerItems.Length + standardBanner.bannerItems.Length];
@@ -22,7 +28,7 @@ public class LimitedBanner : Banner
 
         pool = limitedGuaranty ? bannerItems : poolItems;
 
-        ItemScriptableObject[] selectedItems = Array.FindAll(pool, item => item.rarity == RarityName.Legendary);
+        ItemScriptableObject[] selectedItems = Array.FindAll(pool, (item) => item.rarity == RarityName.Legendary);
 
         int random = UnityEngine.Random.Range(0, selectedItems.Length);
         ItemScriptableObject resultItem = selectedItems[random];

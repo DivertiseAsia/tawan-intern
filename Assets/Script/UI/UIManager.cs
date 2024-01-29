@@ -5,9 +5,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewUIManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    public static NewUIManager Instance { get; private set; }
+    public static UIManager Instance { get; private set; }
 
     [Header("--Gacha Wish Button--")]
     [SerializeField] WishButton[] _wishButtons;
@@ -41,14 +41,14 @@ public class NewUIManager : MonoBehaviour
     private void OnEnable()
     {
         
-        NewGachaManager.OnBannerSwitched += UpdateBannerUI;
+        GachaManager.OnBannerSwitched += UpdateBannerUI;
 
     }
 
     private void OnDisable()
     {
         
-        NewGachaManager.OnBannerSwitched -= UpdateBannerUI;
+        GachaManager.OnBannerSwitched -= UpdateBannerUI;
 
     }
 
@@ -126,7 +126,7 @@ public class NewUIManager : MonoBehaviour
 
     private void UpdateWishButton()
     {
-        int gachaPrice = NewGachaManager.Instance.gachaPrice;
+        int gachaPrice = GachaManager.Instance.gachaPrice;
         foreach (WishButton btn in _wishButtons)
         {
             btn._wishText.text = $"Wish x{btn._wishAmount}";

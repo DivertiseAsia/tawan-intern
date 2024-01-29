@@ -781,8 +781,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1614817962}
-        m_TargetAssemblyTypeName: NewUIManager, Assembly-CSharp
+      - m_Target: {fileID: 1614817961}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: Topup
         m_Mode: 3
         m_Arguments:
@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 350087860}
   - component: {fileID: 350087861}
   m_Layer: 0
-  m_Name: NewGachaManager
+  m_Name: GachaManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1034,9 +1034,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b3e6d0779a54849b9190c8f1007810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBanner: {fileID: 0}
   defaultBanner: {fileID: 11400000, guid: 81f1878afb3b62c4c9b59678919db4bf, type: 2}
-  _playerStatus: {fileID: 0}
+  currentBanner: {fileID: 0}
   itemsResultInfo: []
   gachaPrice: 100
   wishesToGuaranty: 50
@@ -1125,7 +1124,7 @@ PrefabInstance:
     - target: {fileID: 618346308395136568, guid: cee58d075929a7f4fadb17b0935a214b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1614817961}
+      objectReference: {fileID: 0}
     - target: {fileID: 618346308395136568, guid: cee58d075929a7f4fadb17b0935a214b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SwitchBanner
@@ -2048,7 +2047,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1614817961}
-        m_TargetAssemblyTypeName: UImanager, Assembly-CSharp
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ClosePanel
         m_Mode: 2
         m_Arguments:
@@ -3444,7 +3443,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1614817961}
-        m_TargetAssemblyTypeName: UImanager, Assembly-CSharp
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ShowPanel
         m_Mode: 2
         m_Arguments:
@@ -3985,7 +3984,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1614817960}
   - component: {fileID: 1614817961}
-  - component: {fileID: 1614817962}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -4015,12 +4013,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614817959}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21bde83111cd80e4db30f85df2ebb2c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 297b4057e1a52e24a9441d3b3dfd3cdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStatus: {fileID: 0}
   _wishButtons:
   - {fileID: 143227831}
   - {fileID: 1455860682}
@@ -4031,38 +4028,6 @@ MonoBehaviour:
   selectedPosX: -130
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 0.93725497, g: 0.86666673, b: 0.20784315, a: 1}
-  _currencyImage: {fileID: 1462416384}
-  _currencyText: {fileID: 224139530}
-  itemPrefab: {fileID: 7288672202654609395, guid: 84bf400b0f27cf848a2fa0f4b3883fa2, type: 3}
-  _resultPanel: {fileID: 1671105566}
-  _itemsScrollRect: {fileID: 1637499759}
-  _contentsTransform: {fileID: 260349767}
-  _bannerNameText: {fileID: 752201338}
-  _HeadImage: {fileID: 1894522365}
-  _BodyImage: {fileID: 1067313710}
-  _WeaponImage: {fileID: 1664193913}
---- !u!114 &1614817962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614817959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac9b4d7f136b47f409a1efe5dbba4aa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wishButtons:
-  - {fileID: 143227831}
-  - {fileID: 1455860682}
-  _bannerButtons:
-  - {fileID: 618346306968216091}
-  - {fileID: 406381494}
-  defaultPosX: -490
-  selectedPosX: -130
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 0.9372549, g: 0.8666667, b: 0.20784314, a: 1}
   _currencyImage: {fileID: 1462416384}
   _currencyText: {fileID: 224139530}
   itemPrefab: {fileID: 7288672202654609395, guid: 84bf400b0f27cf848a2fa0f4b3883fa2, type: 3}
@@ -4427,7 +4392,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1614817961}
-        m_TargetAssemblyTypeName: UImanager, Assembly-CSharp
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseResultPanel
         m_Mode: 1
         m_Arguments:

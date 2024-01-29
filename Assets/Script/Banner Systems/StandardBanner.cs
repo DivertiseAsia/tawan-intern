@@ -6,6 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Standard Banner", menuName = "Banner/Standard Banner", order = 0)]
 public class StandardBanner : Banner
 {
+
+    private void Reset()
+    {
+        bannerType = BannerType.Standard;
+    }
+
     public override void SetupPool()
     {
         poolItems = bannerItems;

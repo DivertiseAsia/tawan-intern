@@ -6,7 +6,7 @@ using TMPro;
 
 public class ItemCard : MonoBehaviour
 {
-    [SerializeField] UI_Color colorPallete;
+    [SerializeField] UIColor colorPallete;
 
     [SerializeField] Image _itemPanel;
     [SerializeField] Image _itemSprite;

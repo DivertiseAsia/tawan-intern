@@ -3,22 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewGachaManager : MonoBehaviour
+public class GachaManager : MonoBehaviour
 {
-    public static NewGachaManager Instance { get; private set; }
+    public static GachaManager Instance { get; private set; }
 
     public static event Action<Banner> OnBannerSwitched;
 
     [Header("Banner")]
-    [SerializeField] Banner currentBanner;
     [SerializeField] Banner defaultBanner;
+    [SerializeField] Banner currentBanner;
 
     [Header("Result Panel")]
     [SerializeField] ItemScriptableObject[] itemsResultInfo;
 
     [Header("Gacha Config")]
     public int gachaPrice = 100;
-    public int wishesToGuaranty;
+    [SerializeField] int wishesToGuaranty;
     public GachaRate[] gachaRates = new GachaRate[4];
     
 
@@ -44,7 +44,7 @@ public class NewGachaManager : MonoBehaviour
     private void Start()
     {
         SetBanner(defaultBanner);
-        NewUIManager.Instance.UpdateBannerUI(currentBanner);
+        UIManager.Instance.UpdateBannerUI(currentBanner);
     }
 
     private void SetBanner(Banner banner)
@@ -61,7 +61,7 @@ public class NewGachaManager : MonoBehaviour
         if (currentBanner._currency.IsCurrencyEnough(gachaPrice * amount))
         {
             currentBanner._currency.Pay(gachaPrice * amount);
-            NewUIManager.Instance.UpdateCurrencyUI();
+            UIManager.Instance.UpdateCurrencyUI();
 
             itemsResultInfo = new ItemScriptableObject[amount];
 
@@ -84,7 +84,7 @@ public class NewGachaManager : MonoBehaviour
                 }
             }
 
-            NewUIManager.Instance.ShowGachaResult(itemsResultInfo);
+            UIManager.Instance.ShowGachaResult(itemsResultInfo);
 
         }
         else
