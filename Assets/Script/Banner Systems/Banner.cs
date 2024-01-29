@@ -7,14 +7,15 @@ public abstract class Banner : ScriptableObject
 {
     public string bannerName;
     public BannerType bannerType;
-    public Sprite _currencySprite;
+    public Currency _currency;
     public ItemScriptableObject[] bannerItems;
     public ItemScriptableObject[] poolItems;
 
     public int legendaryWishCount;
     public float defaultLegendaryRate;
 
-    public bool limitedGuaranty;
+    public bool limitedGuaranty = false;
+    public bool legendaryGuaranty = false;
 
     public ItemScriptableObject GetItems(RarityName rarity)
     {
@@ -36,22 +37,32 @@ public abstract class Banner : ScriptableObject
         return resultItem;
     }
 
-    public void IncreaseLegendaryCount()
+    public void UpdateLegendaryCount(RarityName rarity)
     {
-        legendaryWishCount++;
+        if(rarity == RarityName.Legendary && !legendaryGuaranty)
+        {
+            legendaryWishCount = 0;
+        }
+        else
+        {
+            legendaryWishCount++;
+        }
     }
 
-    public void SetLegendaryGuaranty(int legendaryGuaranty, GachaRate legendaryRate)
+    public void SetLegendaryGuaranty(int wishesToGuaranty, GachaRate legendaryRate)
     {
-        if (legendaryWishCount == (legendaryGuaranty - 1))
+        if (legendaryWishCount == (wishesToGuaranty - 1))
         {
+            Debug.Log("Guaranty");
             defaultLegendaryRate = legendaryRate.rate;
             legendaryRate.rate = 100;
+            legendaryGuaranty = true;
         }
-        else if (legendaryWishCount == legendaryGuaranty)
+        else if (legendaryWishCount == wishesToGuaranty && legendaryGuaranty)
         {
             legendaryWishCount = 0;
             legendaryRate.rate = defaultLegendaryRate;
+            legendaryGuaranty = false;
         }
     }
 

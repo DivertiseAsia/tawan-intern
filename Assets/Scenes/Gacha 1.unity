@@ -408,54 +408,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160904945}
   m_CullTransparentMesh: 1
---- !u!1 &173721822
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 173721824}
-  - component: {fileID: 173721823}
-  m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &173721823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173721822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f87088db05870a4e9ef8695c46a6ad1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stars:
-    amount: 0
-  diamonds:
-    amount: 20
---- !u!4 &173721824
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173721822}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2063168, y: -1.5490596, z: 0.13244843}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &175247872
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,8 +781,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1614817961}
-        m_TargetAssemblyTypeName: UImanager, Assembly-CSharp
+      - m_Target: {fileID: 1614817962}
+        m_TargetAssemblyTypeName: NewUIManager, Assembly-CSharp
         m_MethodName: Topup
         m_Mode: 3
         m_Arguments:
@@ -1084,10 +1036,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentBanner: {fileID: 0}
   defaultBanner: {fileID: 11400000, guid: 81f1878afb3b62c4c9b59678919db4bf, type: 2}
-  _playerStatus: {fileID: 173721823}
+  _playerStatus: {fileID: 0}
   itemsResultInfo: []
   gachaPrice: 100
-  legendaryGuaranty: 50
+  wishesToGuaranty: 50
   gachaRates:
   - rarityName: 0
     rate: 3
@@ -1142,6 +1094,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: data.game
+  gameData:
+    starAmount: 5900
+    diamondAmount: 7500
+    currenciesName: []
+    currenciesAmount: 
 --- !u!1001 &406381492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2439,7 +2396,7 @@ Transform:
   - {fileID: 360267522}
   - {fileID: 1614817960}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1124181552
 GameObject:
@@ -3568,7 +3525,7 @@ Transform:
   - {fileID: 1248528327}
   - {fileID: 1179892966}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1429588476
 MonoBehaviour:
@@ -4063,7 +4020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21bde83111cd80e4db30f85df2ebb2c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStatus: {fileID: 173721823}
+  _playerStatus: {fileID: 0}
   _wishButtons:
   - {fileID: 143227831}
   - {fileID: 1455860682}
@@ -4096,7 +4053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9b4d7f136b47f409a1efe5dbba4aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStatus: {fileID: 173721823}
   _wishButtons:
   - {fileID: 143227831}
   - {fileID: 1455860682}
@@ -4350,7 +4306,7 @@ GameObject:
   - component: {fileID: 1752115742}
   - component: {fileID: 1752115743}
   m_Layer: 0
-  m_Name: BannerManager
+  m_Name: CurrencyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4380,12 +4336,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1752115741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34c215cbb7804ea48a1e39ca5b91d377, type: 3}
+  m_Script: {fileID: 11500000, guid: 640425cddd614014d8e664862c99a69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bannerType: 0
-  defaultBanner: {fileID: 11400000, guid: 28d26d86f8bbe1147aaae939f8835a9b, type: 2}
-  currentBanner: {fileID: 0}
+  currencyList:
+  - {fileID: 11400000, guid: db49151b95d032b4ebe4f74ab1bd1b56, type: 2}
+  - {fileID: 11400000, guid: 9c22fe99430471d4fb10e6c18bcec350, type: 2}
 --- !u!1 &1799249212
 GameObject:
   m_ObjectHideFlags: 0

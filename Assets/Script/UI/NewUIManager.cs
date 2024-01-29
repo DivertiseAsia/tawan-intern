@@ -9,9 +9,6 @@ public class NewUIManager : MonoBehaviour
 {
     public static NewUIManager Instance { get; private set; }
 
-    [Header("--PlayerStatus--")]
-    [SerializeField] PlayerStatus _playerStatus;
-
     [Header("--Gacha Wish Button--")]
     [SerializeField] WishButton[] _wishButtons;
 
@@ -25,7 +22,7 @@ public class NewUIManager : MonoBehaviour
     [Header("--Currency--")]
     [SerializeField] Image _currencyImage;
     [SerializeField] TextMeshProUGUI _currencyText;
-    Sprite currentCurrencySprite;
+    Currency currentCurrency;
 
     [Header("--Result Panel--")]
     [SerializeField] ItemCard itemPrefab;
@@ -67,7 +64,7 @@ public class NewUIManager : MonoBehaviour
     public void Topup(int amount)
     {
         AudioManager.Instance.PlaySFX("Open");
-        _playerStatus.Topup(amount);
+        currentCurrency.Topup(amount);
         UpdateCurrencyUI();
     }
 
@@ -78,7 +75,6 @@ public class NewUIManager : MonoBehaviour
             ItemCard item = Instantiate(itemPrefab, _contentsTransform);
             item.Setup(itemInfo);
         }
-
 
         _resultPanel.SetActive(true);
         _itemsScrollRect.horizontalNormalizedPosition = 0;
@@ -109,8 +105,7 @@ public class NewUIManager : MonoBehaviour
     {
         _bannerNameText.text = banner.bannerName;
 
-
-        currentCurrencySprite = banner._currencySprite;
+        currentCurrency = banner._currency;
         UpdateCurrencyUI();
 
         UpdateWishButton();
@@ -125,8 +120,8 @@ public class NewUIManager : MonoBehaviour
 
     public void UpdateCurrencyUI()
     {
-        _currencyText.text = _playerStatus.currentCurrency.amount.ToString();
-        _currencyImage.sprite = currentCurrencySprite;
+        _currencyText.text = currentCurrency.amount.ToString();
+        _currencyImage.sprite = currentCurrency.sprite;
     }
 
     private void UpdateWishButton()
@@ -136,9 +131,10 @@ public class NewUIManager : MonoBehaviour
         {
             btn._wishText.text = $"Wish x{btn._wishAmount}";
             btn._priceText.text = $"x {gachaPrice * btn._wishAmount}";
-            btn._currencyImage.sprite = currentCurrencySprite;
+            btn._currencyImage.sprite = currentCurrency.sprite;
         }
     }
+
     public void UpdateBannerButtonPos(Banner banner)
     {
         foreach (BannerButton btn in _bannerButtons)

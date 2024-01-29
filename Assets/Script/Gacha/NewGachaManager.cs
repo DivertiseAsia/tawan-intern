@@ -21,7 +21,7 @@ public class NewGachaManager : MonoBehaviour
 
     [Header("Gacha Config")]
     public int gachaPrice = 100;
-    public int legendaryGuaranty;
+    public int wishesToGuaranty;
     public GachaRate[] gachaRates = new GachaRate[4];
     
 
@@ -61,8 +61,10 @@ public class NewGachaManager : MonoBehaviour
 
     public void Pull(int amount)
     {
-        if (_playerStatus.isCurrencyEnough(gachaPrice * amount))
+        if (currentBanner._currency.IsCurrencyEnough(gachaPrice * amount))
         {
+            currentBanner._currency.Pay(gachaPrice * amount);
+            NewUIManager.Instance.UpdateCurrencyUI();
 
             itemsResultInfo = new ItemScriptableObject[amount];
 
@@ -77,8 +79,8 @@ public class NewGachaManager : MonoBehaviour
 
                         itemsResultInfo[i] = result;
 
-                        currentBanner.IncreaseLegendaryCount();
-                        currentBanner.SetLegendaryGuaranty(legendaryGuaranty, gachaRates[0]);
+                        currentBanner.UpdateLegendaryCount(gachaRates[j].rarityName);
+                        currentBanner.SetLegendaryGuaranty(wishesToGuaranty, gachaRates[0]);
 
                         break;
                     }
@@ -86,12 +88,6 @@ public class NewGachaManager : MonoBehaviour
             }
 
             NewUIManager.Instance.ShowGachaResult(itemsResultInfo);
-
-            _playerStatus.Pay(gachaPrice * amount);
-
-            NewUIManager.Instance.UpdateCurrencyUI();
-
-            
 
         }
         else

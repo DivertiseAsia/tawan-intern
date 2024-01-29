@@ -9,13 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b4e4fd2ba05b64c80922bcbb3bc410, type: 3}
-  m_Name: Standard Banner
+  m_Script: {fileID: 11500000, guid: a26e78743ba05ef4dad6c012a8bb7224, type: 3}
+  m_Name: Limited Banner
   m_EditorClassIdentifier: 
-  bannerName: Standard Banner
-  bannerType: 0
-  _currencySprite: {fileID: 21300048, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  bannerName: Limited Banner
+  bannerType: 1
+  _currency: {fileID: 11400000, guid: 9c22fe99430471d4fb10e6c18bcec350, type: 2}
   bannerItems:
+  - {fileID: 11400000, guid: bec1281f7f8946d4587fefd8792c8532, type: 2}
+  - {fileID: 11400000, guid: cd0e7753a95143b4aaac7f5564e0008d, type: 2}
+  - {fileID: 11400000, guid: 1483a0117a090604eb4f8c427d6cdb32, type: 2}
+  poolItems:
+  - {fileID: 11400000, guid: bec1281f7f8946d4587fefd8792c8532, type: 2}
+  - {fileID: 11400000, guid: cd0e7753a95143b4aaac7f5564e0008d, type: 2}
+  - {fileID: 11400000, guid: 1483a0117a090604eb4f8c427d6cdb32, type: 2}
   - {fileID: 11400000, guid: 32a88838a74a15a47ae7597f0aac6a04, type: 2}
   - {fileID: 11400000, guid: 5ee1e45391c1d124390c27899b2ad120, type: 2}
   - {fileID: 11400000, guid: 70db342c1aee6234f8c1591f1d80b795, type: 2}
@@ -28,7 +35,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0f5750eacec640a4486e8a6b653244fe, type: 2}
   - {fileID: 11400000, guid: 372b39c931a3dd64f9004933896593a7, type: 2}
   - {fileID: 11400000, guid: 4e9572985c41e5843868f789ed1d4a41, type: 2}
-  poolItems: []
   legendaryWishCount: 0
-  defaultLegendaryRate: 0
+  defaultLegendaryRate: 3
   limitedGuaranty: 0
+  legendaryGuaranty: 0
+  standardBanner: {fileID: 11400000, guid: 81f1878afb3b62c4c9b59678919db4bf, type: 2}

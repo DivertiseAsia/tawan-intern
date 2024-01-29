@@ -11,6 +11,7 @@ public class BannerButton : MonoBehaviour
     public void SwitchBanner()
     {
         OnBannerButtonPressed?.Invoke(_banner);
+        AudioManager.Instance.PlaySFX("Open");
     }
 }
 

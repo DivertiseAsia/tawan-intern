@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b4e4fd2ba05b64c80922bcbb3bc410, type: 3}
+  m_Name: Standard Banner
+  m_EditorClassIdentifier: 
+  bannerName: Standard Banner
+  bannerType: 0
+  _currency: {fileID: 11400000, guid: db49151b95d032b4ebe4f74ab1bd1b56, type: 2}
+  bannerItems:
+  - {fileID: 11400000, guid: 32a88838a74a15a47ae7597f0aac6a04, type: 2}
+  - {fileID: 11400000, guid: 5ee1e45391c1d124390c27899b2ad120, type: 2}
+  - {fileID: 11400000, guid: 70db342c1aee6234f8c1591f1d80b795, type: 2}
+  - {fileID: 11400000, guid: 3cdcc4d31d2fee14e947bcf3234b2acb, type: 2}
+  - {fileID: 11400000, guid: e29ec84a50aaa4d43ac1e0cb5c817c5a, type: 2}
+  - {fileID: 11400000, guid: db40ea622e05dda41bc0d0fdbf1cca2e, type: 2}
+  - {fileID: 11400000, guid: 66b36a4446351bc42a15788da52385bf, type: 2}
+  - {fileID: 11400000, guid: 1abf355f01e10464db81602ad4d8c217, type: 2}
+  - {fileID: 11400000, guid: 9bae7400203dabb40a54ad2bbe70a0d5, type: 2}
+  - {fileID: 11400000, guid: 0f5750eacec640a4486e8a6b653244fe, type: 2}
+  - {fileID: 11400000, guid: 372b39c931a3dd64f9004933896593a7, type: 2}
+  - {fileID: 11400000, guid: 4e9572985c41e5843868f789ed1d4a41, type: 2}
+  poolItems:
+  - {fileID: 11400000, guid: 32a88838a74a15a47ae7597f0aac6a04, type: 2}
+  - {fileID: 11400000, guid: 5ee1e45391c1d124390c27899b2ad120, type: 2}
+  - {fileID: 11400000, guid: 70db342c1aee6234f8c1591f1d80b795, type: 2}
+  - {fileID: 11400000, guid: 3cdcc4d31d2fee14e947bcf3234b2acb, type: 2}
+  - {fileID: 11400000, guid: e29ec84a50aaa4d43ac1e0cb5c817c5a, type: 2}
+  - {fileID: 11400000, guid: db40ea622e05dda41bc0d0fdbf1cca2e, type: 2}
+  - {fileID: 11400000, guid: 66b36a4446351bc42a15788da52385bf, type: 2}
+  - {fileID: 11400000, guid: 1abf355f01e10464db81602ad4d8c217, type: 2}
+  - {fileID: 11400000, guid: 9bae7400203dabb40a54ad2bbe70a0d5, type: 2}
+  - {fileID: 11400000, guid: 0f5750eacec640a4486e8a6b653244fe, type: 2}
+  - {fileID: 11400000, guid: 372b39c931a3dd64f9004933896593a7, type: 2}
+  - {fileID: 11400000, guid: 4e9572985c41e5843868f789ed1d4a41, type: 2}
+  legendaryWishCount: 2
+  defaultLegendaryRate: 3
+  limitedGuaranty: 0
+  legendaryGuaranty: 0

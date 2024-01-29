@@ -8,7 +8,7 @@ public class DataPersistenceManager : MonoBehaviour
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
 
-    private GameData gameData;
+   [SerializeField] private GameData gameData;
 
     private List<IDataPersistence> dataPersistenceObjects;
 
@@ -54,6 +54,19 @@ public class DataPersistenceManager : MonoBehaviour
 
     }
 
+    public void LoadDataToInspector()
+    {
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        this.gameData = dataHandler.Load();
+
+        if (this.gameData == null)
+        {
+            Debug.Log("No Data was found. Initializing data to default");
+            NewGame();
+        }
+
+    }
+
     public void SaveGame() 
     {
         foreach(IDataPersistence dataPersistenceObj in dataPersistenceObjects)
@@ -61,6 +74,12 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.SaveData(gameData);
         }
 
+        dataHandler.Save(gameData);
+    }
+
+    public void SaveInspectorDataToFile()
+    {
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         dataHandler.Save(gameData);
     }
 
