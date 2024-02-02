@@ -84,7 +84,8 @@ public class GachaManager : MonoBehaviour
                 }
             }
 
-            UIManager.Instance.ShowGachaResult(itemsResultInfo);
+            // UIManager.Instance.ShowGachaResult(itemsResultInfo);
+            UIManager.Instance.ShowGachaPreResult(itemsResultInfo);
 
         }
         else

@@ -5,14 +5,17 @@ using UnityEngine;
 
 public abstract class ItemScriptableObject : ScriptableObject
 {
-    public BannerType bannerType;
-    public ItemType itemType;
+    [Header("Item Info")]
     public string itemName;
     public Sprite itemSprite;
-    public RarityName rarity;
+
+    [Header("Types")]
+    public BannerType bannerType;
+    public Rarity rarity;
+    public ItemType itemType;
 }
 
-public enum RarityName
+public enum Rarity
 {
     Legendary,
     Epic,

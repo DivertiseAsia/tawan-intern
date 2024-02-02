@@ -25,8 +25,9 @@ public class UIManager : MonoBehaviour
     Currency currentCurrency;
 
     [Header("--Result Panel--")]
+    [SerializeField] GameObject _overAllResultPanel;
+    [SerializeField] PreResultPanel _preResultPanel;
     [SerializeField] ItemCard itemPrefab;
-    [SerializeField] GameObject _resultPanel;
     [SerializeField] ScrollRect _itemsScrollRect;
     [SerializeField] RectTransform _contentsTransform;
 
@@ -39,17 +40,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image _WeaponImage;
 
     private void OnEnable()
-    {
-        
-        GachaManager.OnBannerSwitched += UpdateBannerUI;
-
+    {        
+        GachaManager.OnBannerSwitched += UpdateBannerUI;       
     }
 
     private void OnDisable()
-    {
-        
-        GachaManager.OnBannerSwitched -= UpdateBannerUI;
-
+    {        
+        GachaManager.OnBannerSwitched -= UpdateBannerUI;       
     }
 
     private void Awake()
@@ -73,20 +70,40 @@ public class UIManager : MonoBehaviour
         foreach (ItemScriptableObject itemInfo in itemsInfo)
         {
             ItemCard item = Instantiate(itemPrefab, _contentsTransform);
-            item.Setup(itemInfo);
+            item.Setup(itemInfo, true);
         }
 
-        _resultPanel.SetActive(true);
+        _overAllResultPanel.SetActive(true);
+        _itemsScrollRect.horizontalNormalizedPosition = 0;
+    }
+
+    public void ShowGachaPreResult(ItemScriptableObject[] itemsInfo)
+    {
+        foreach (Transform item in _contentsTransform)
+        {
+            Destroy(item.gameObject);
+        }
+        /*
+        foreach (ItemScriptableObject itemInfo in itemsInfo)
+        {
+            ItemCard item = Instantiate(itemPrefab, _contentsTransform);
+            item.Setup(itemInfo, false);
+        }
+        */
+        _preResultPanel.SetUp(itemsInfo);
+        _preResultPanel.gameObject.SetActive(true);        
+    }
+
+    public void ShowOverAllResult()
+    {
+        //_overAllResultPanel.SetActive(true);
         _itemsScrollRect.horizontalNormalizedPosition = 0;
     }
 
     public void CloseResultPanel()
     {
-        _resultPanel.SetActive(false);
-        foreach (Transform item in _contentsTransform)
-        {
-            Destroy(item.gameObject);
-        }
+        _overAllResultPanel.SetActive(false);
+        
     }
 
     public void ShowPanel(GameObject panel)
@@ -112,9 +129,9 @@ public class UIManager : MonoBehaviour
 
         UpdateBannerButtonPos(banner);
 
-        _HeadImage.sprite = banner.findItem(ItemType.Head, RarityName.Legendary).itemSprite;
-        _BodyImage.sprite = banner.findItem(ItemType.Body, RarityName.Legendary).itemSprite;
-        _WeaponImage.sprite = banner.findItem(ItemType.Weapon, RarityName.Legendary).itemSprite;
+        _HeadImage.sprite = banner.findItem(ItemType.Head, Rarity.Legendary).itemSprite;
+        _BodyImage.sprite = banner.findItem(ItemType.Body, Rarity.Legendary).itemSprite;
+        _WeaponImage.sprite = banner.findItem(ItemType.Weapon, Rarity.Legendary).itemSprite;
 
     }
 

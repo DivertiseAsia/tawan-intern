@@ -18,7 +18,7 @@ public class StandardBanner : Banner
     }
     public override ItemScriptableObject GetLegendaryItem()
     {
-        ItemScriptableObject[] selectedItems = Array.FindAll(bannerItems, item => item.rarity == RarityName.Legendary);
+        ItemScriptableObject[] selectedItems = Array.FindAll(bannerItems, item => item.rarity == Rarity.Legendary);
 
         int random = UnityEngine.Random.Range(0, selectedItems.Length);
         ItemScriptableObject resultItem = selectedItems[random];

@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class GachaRate
 {
-    public RarityName rarityName;
+    public Rarity rarityName;
 
     [Range(1,100)]
     public float rate;

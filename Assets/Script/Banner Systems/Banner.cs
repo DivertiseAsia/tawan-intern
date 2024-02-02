@@ -17,11 +17,11 @@ public abstract class Banner : ScriptableObject
     public bool limitedGuaranty = false;
     public bool legendaryGuaranty = false;
 
-    public ItemScriptableObject GetItems(RarityName rarity)
+    public ItemScriptableObject GetItems(Rarity rarity)
     {
         ItemScriptableObject resultItem;
 
-        if (rarity == RarityName.Legendary)
+        if (rarity == Rarity.Legendary)
         {
             resultItem = GetLegendaryItem();
             SetLimitedGuaranty(resultItem);
@@ -37,9 +37,9 @@ public abstract class Banner : ScriptableObject
         return resultItem;
     }
 
-    public void UpdateLegendaryCount(RarityName rarity)
+    public void UpdateLegendaryCount(Rarity rarity)
     {
-        if(rarity == RarityName.Legendary && !legendaryGuaranty)
+        if(rarity == Rarity.Legendary && !legendaryGuaranty)
         {
             legendaryWishCount = 0;
         }
@@ -66,7 +66,7 @@ public abstract class Banner : ScriptableObject
         }
     }
 
-    public ItemScriptableObject findItem(ItemType type, RarityName rarity)
+    public ItemScriptableObject findItem(ItemType type, Rarity rarity)
     {
         ItemScriptableObject selectedItem = Array.Find(bannerItems, item =>
                                                             item.rarity == rarity &&

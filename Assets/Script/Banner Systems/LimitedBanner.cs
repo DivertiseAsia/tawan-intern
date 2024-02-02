@@ -28,7 +28,7 @@ public class LimitedBanner : Banner
 
         pool = limitedGuaranty ? bannerItems : poolItems;
 
-        ItemScriptableObject[] selectedItems = Array.FindAll(pool, (item) => item.rarity == RarityName.Legendary);
+        ItemScriptableObject[] selectedItems = Array.FindAll(pool, (item) => item.rarity == Rarity.Legendary);
 
         int random = UnityEngine.Random.Range(0, selectedItems.Length);
         ItemScriptableObject resultItem = selectedItems[random];

@@ -9,10 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e83e5f1a37c5c0f429fcc3f0f988f40d, type: 3}
+  m_Script: {fileID: 11500000, guid: 75825ede1ddaf104f872a623ce64ca06, type: 3}
   m_Name: DefaultUIColor
   m_EditorClassIdentifier: 
   legendary: {r: 0.93725497, g: 0.86666673, b: 0.20784315, a: 1}
   epic: {r: 0.85098046, g: 0.28627452, b: 0.90196085, a: 1}
   rare: {r: 0.4235294, g: 0.7051379, b: 0.9098039, a: 1}
   common: {r: 0.85098046, g: 0.85098046, b: 0.85098046, a: 1}
+  rarityColor:
+  - rarity: 0
+    color: {r: 0.93725497, g: 0.86666673, b: 0.20784315, a: 1}
+  - rarity: 1
+    color: {r: 0.85098046, g: 0.28627452, b: 0.90196085, a: 1}
+  - rarity: 2
+    color: {r: 0.25989673, g: 0.61842287, b: 0.8773585, a: 1}
+  - rarity: 3
+    color: {r: 0.85098046, g: 0.85098046, b: 0.85098046, a: 1}
